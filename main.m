@@ -1,4 +1,6 @@
-close all 
 clear all
+close all
 
-% Main script to run the classifier
+healthyAccuracyK = SVMUsingFreqKeywords('healthy')
+
+healthyAccuracyN = SVMUsingNutrition('pre')
