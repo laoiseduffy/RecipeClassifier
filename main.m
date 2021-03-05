@@ -1,6 +1,8 @@
 clear all
 close all
 
+healthyAccuracy = SVMUsingCombinedFeatures('healthy')
+
 healthyAccuracyK = SVMUsingFreqKeywords('healthy')
 
-healthyAccuracyN = SVMUsingNutrition('pre')
+healthyAccuracyN = SVMUsingNutrition('healthy')
