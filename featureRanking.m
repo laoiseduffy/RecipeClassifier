@@ -2,13 +2,16 @@
 close all
 clear all
 
+% Change this for each label
+label = 'recovery';
+
 T = readtable('/Users/laoiseduffy/Documents/Final Year/CSC3002/Data/final.xlsm', 'TextType', 'string');
 totalRecipes = height(T);
-totalPosPre = sum(T.pre == 1);
-totalNegPre = sum(T.pre == 0);
+totalPosPre = sum(T.(label) == 1);
+totalNegPre = sum(T.(label) == 0);
 
-frequencyTable = load('preKeywordsRanking.mat');
-frequencyTable = frequencyTable.rankingTable;
+frequencyTable = frequencyTable(label);
+% frequencyTable = frequencyTable.rankingTable;
 
 % feature, MIScore
 Feature = frequencyTable.words;
@@ -18,8 +21,8 @@ featureRankingTable = table(Feature,MutualInformationScore);
 % for each feature, find its score
 for i=1:height(frequencyTable)
     feature = frequencyTable.words(i);
-    freqPos = frequencyTable.preFrequency(i);
-    freqNeg = frequencyTable.notPreFrequency(i);
+    freqPos = frequencyTable.posLabelFrequency(i);
+    freqNeg = frequencyTable.negLabelFrequency(i);
     
     MI = MIScore(totalPosPre,totalNegPre,freqPos,freqNeg);
     
@@ -27,8 +30,8 @@ for i=1:height(frequencyTable)
     
 end
 
-B = sortrows(featureRankingTable,2,'descend');
+R = sortrows(featureRankingTable,2,'descend');
 
-indices = find(isnan(B(:,2).MutualInformationScore));
-B(indices,:) = [];
+indices = find(isnan(R(:,2).MutualInformationScore));
+R(indices,:) = [];
 
