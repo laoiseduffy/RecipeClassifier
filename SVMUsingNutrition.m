@@ -20,8 +20,13 @@ SVMModel = fitcsvm(trainingSet,label);
 % Use model to predict labels
 predictions = predict(SVMModel,testingSet);
 
+[ErrorRate,Recall,Precision,Specificity,F1,FalseAlarmRate] = metrics(testingSet.(label),predictions);
 % Find accuracy
 accuracy = sum(predictions == testingSet.(label))/numel(testingSet.(label));
+
+% Display metrics
+nutritionTable = table(accuracy,ErrorRate,Recall,Precision,Specificity,F1,FalseAlarmRate, 'VariableNames',{'Accuracy','ErrorRate','Recall','Precision','Specificity','F1','FalseAlarmRate'})
+% confusionMatrix(testLabels,classificationResult);
 
 end
 

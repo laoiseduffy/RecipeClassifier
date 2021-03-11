@@ -27,8 +27,13 @@ SVMModel = fitcsvm(keywordFeatureVector,trainingLabels);
 keywordTestFeatureVector = countWordFrequency(keywordsTest, topLabelKeywords);
 predictions = predict(SVMModel,keywordTestFeatureVector);
 
+[ErrorRate,Recall,Precision,Specificity,F1,FalseAlarmRate] = metrics(testingLabels,predictions);
 % Use the model to predict the labels and measure the accuracy
 accuracy = sum(predictions == testingLabels)/numel(testingLabels);
+
+% Display metrics
+keywordsTable = table(accuracy,ErrorRate,Recall,Precision,Specificity,F1,FalseAlarmRate, 'VariableNames',{'Accuracy','ErrorRate','Recall','Precision','Specificity','F1','FalseAlarmRate'})
+% confusionMatrix(testLabels,classificationResult);
 
 end
 

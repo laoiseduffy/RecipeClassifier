@@ -1,8 +1,8 @@
 clear all
 close all
 
-healthyAccuracy = SVMUsingCombinedFeatures('healthy')
+healthyAccuracy = SVMUsingCombinedFeatures('healthy');
 
-healthyAccuracyK = SVMUsingFreqKeywords('healthy')
+% healthyAccuracyK = SVMUsingFreqKeywords('healthy');
 
-healthyAccuracyN = SVMUsingNutrition('healthy')
+healthyAccuracyN = SVMUsingNutrition('healthy');

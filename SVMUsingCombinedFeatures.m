@@ -1,4 +1,4 @@
-function accuracy = SVMUsingCombinedFeatures(label)
+function Accuracy = SVMUsingCombinedFeatures(label)
 %SVMUsingCombinedFeatures
 %   SVM algorithm using nutritional information and keywords as features
 
@@ -22,9 +22,16 @@ SVMModel = fitcsvm(trainingSet,label);
 
 % Use model to predict labels
 predictions = predict(SVMModel,testingSet);
+labels = testingSet.(label);
+
+[ErrorRate,Recall,Precision,Specificity,F1,FalseAlarmRate] = metrics(labels,predictions);
 
 % Find accuracy
-accuracy = sum(predictions == testingSet.(label))/numel(testingSet.(label));
+Accuracy = sum(predictions == testingSet.(label))/numel(testingSet.(label));
+
+% Display metrics
+combinedTable = table(Accuracy,ErrorRate,Recall,Precision,Specificity,F1,FalseAlarmRate, 'VariableNames',{'Accuracy','ErrorRate','Recall','Precision','Specificity','F1','FalseAlarmRate'})
+% confusionMatrix(testLabels,classificationResult);
 
 end
 
