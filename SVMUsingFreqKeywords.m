@@ -1,5 +1,5 @@
 function accuracy = SVMUsingFreqKeywords(label)
-%SVMUsingKeywords Summary of this function goes here
+%SVMUsingKeywords 
 %   SVM algorithm using bag of keywords as feature
 
 % Load the dataset
