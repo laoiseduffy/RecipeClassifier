@@ -1,4 +1,4 @@
-function accuracy = SVMUsingNutrition(label)
+function [accuracy,ErrorRate,Recall,Precision,Specificity,F1,FalseAlarmRate] = SVMUsingNutrition(label)
 %SVMUsingNutrition 
 %   SVM algorithm using nutritional information as features
 
@@ -25,7 +25,7 @@ predictions = predict(SVMModel,testingSet);
 accuracy = sum(predictions == testingSet.(label))/numel(testingSet.(label));
 
 % Display metrics
-nutritionTable = table(accuracy,ErrorRate,Recall,Precision,Specificity,F1,FalseAlarmRate, 'VariableNames',{'Accuracy','ErrorRate','Recall','Precision','Specificity','F1','FalseAlarmRate'})
+nutritionTable = table(accuracy,ErrorRate,Recall,Precision,Specificity,F1,FalseAlarmRate, 'VariableNames',{'Accuracy','ErrorRate','Recall','Precision','Specificity','F1','FalseAlarmRate'});
 % confusionMatrix(testLabels,classificationResult);
 
 end
