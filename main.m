@@ -1,13 +1,6 @@
 clear all
 close all
 
-% healthyAccuracy = SVMUsingCombinedFeatures('healthy');
-
-% healthyAccuracyK = SVMUsingFreqKeywords('healthy');
-
-% healthyAccuracyMI = SVMUsingMIKeywords('healthy');
-% 
-% accuracyOne=0; ErrorRateOne=0; RecallOne=0; PrecisionOne=0; SpecificityOne=0; F1One=0; FalseAlarmRateOne=0;
 totalaccuracy=0; totalErrorRate=0; totalRecall=0; totalPrecision=0; totalSpecificity=0; totalF1=0; totalFalseAlarmRate=0;
 
 for i=1:5 
