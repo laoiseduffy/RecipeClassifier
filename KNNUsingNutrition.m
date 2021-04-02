@@ -15,10 +15,11 @@ testingSet = refinedTable(cvp.test,:);
 % testingLabels = testingSet(:,8);
 
 %Train model
-KNNModel = fitcknn(trainingSet,label);
+KNNPostModel = fitcknn(trainingSet,label);
+save KNNPostModel;
 
 % Use model to predict labels
-predictions = predict(KNNModel,testingSet);
+predictions = predict(KNNPostModel,testingSet);
 
 [ErrorRate,Recall,Precision,Specificity,F1,FalseAlarmRate] = metrics(testingSet.(label),predictions);
 % Find accuracy

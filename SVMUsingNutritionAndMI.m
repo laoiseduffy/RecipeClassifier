@@ -1,6 +1,6 @@
 function [accuracy,ErrorRate,Recall,Precision,Specificity,F1,FalseAlarmRate] = SVMUsingNutritionAndMI(label)
 %SVMUsingNutritionAndMI 
-%   SVM classifier with nutritional inofrmation and Mutual Information 
+%   SVM classifier with nutritional information and Mutual Information 
 %       ranked keywords as features
 
 %% Initialization
@@ -39,8 +39,8 @@ featureVector = createKeywordsVector(keywordsTrain, words);
 % r = A(:,3)
 trainingFeatures = table(trainingSet.kcal, trainingSet.fat, trainingSet.carbs, trainingSet.protein, featureVector(:,1), featureVector(:,2), featureVector(:,3), featureVector(:,4), featureVector(:,5), featureVector(:,6), featureVector(:,7), featureVector(:,8), featureVector(:,9), featureVector(:,10));
 
-SVMModel = fitcsvm(trainingFeatures,trainingLabels);
-
+SVMRecoveryModel = fitcsvm(trainingFeatures,trainingLabels);
+save SVMRecoveryModel;
 
 %% Test
 
@@ -51,7 +51,7 @@ featureVectorTest = createKeywordsVector(keywordsTest, words);
 trainingFeatures = table(testingSet.kcal, testingSet.fat, testingSet.carbs, testingSet.protein, featureVectorTest(:,1), featureVectorTest(:,2), featureVectorTest(:,3), featureVectorTest(:,4), featureVectorTest(:,5), featureVectorTest(:,6), featureVectorTest(:,7), featureVectorTest(:,8), featureVectorTest(:,9), featureVectorTest(:,10));
 
 % Use model to predict labels
-predictions = predict(SVMModel,trainingFeatures);
+predictions = predict(SVMRecoveryModel,trainingFeatures);
 
 
 %% Evaluation

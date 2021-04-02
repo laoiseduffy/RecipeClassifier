@@ -15,10 +15,12 @@ testingSet = refinedTable(cvp.test,:);
 % testingLabels = testingSet(:,8);
 
 %Train model
-SVMModel = fitcsvm(trainingSet,label);
+SVMPreModel = fitcsvm(trainingSet,label);
+
+save SVMPreModel SVMPreModel;
 
 % Use model to predict labels
-predictions = predict(SVMModel,testingSet);
+predictions = predict(SVMPreModel,testingSet);
 
 [ErrorRate,Recall,Precision,Specificity,F1,FalseAlarmRate] = metrics(testingSet.(label),predictions);
 % Find accuracy

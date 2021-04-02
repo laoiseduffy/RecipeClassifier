@@ -39,8 +39,8 @@ featureVector = createKeywordsVector(keywordsTrain, words);
 % r = A(:,3)
 trainingFeatures = table(trainingSet.kcal, trainingSet.fat, trainingSet.carbs, trainingSet.protein, featureVector(:,1), featureVector(:,2), featureVector(:,3), featureVector(:,4), featureVector(:,5), featureVector(:,6), featureVector(:,7), featureVector(:,8), featureVector(:,9), featureVector(:,10));
 
-KNNModel = fitcknn(trainingFeatures,trainingLabels);
-
+KNNHealthyModel = fitcknn(trainingFeatures,trainingLabels);
+save KNNHealthyModel;
 
 %% Test
 
@@ -51,7 +51,7 @@ featureVectorTest = createKeywordsVector(keywordsTest, words);
 trainingFeatures = table(testingSet.kcal, testingSet.fat, testingSet.carbs, testingSet.protein, featureVectorTest(:,1), featureVectorTest(:,2), featureVectorTest(:,3), featureVectorTest(:,4), featureVectorTest(:,5), featureVectorTest(:,6), featureVectorTest(:,7), featureVectorTest(:,8), featureVectorTest(:,9), featureVectorTest(:,10));
 
 % Use model to predict labels
-predictions = predict(KNNModel,trainingFeatures);
+predictions = predict(KNNHealthyModel,trainingFeatures);
 
 
 %% Evaluation
