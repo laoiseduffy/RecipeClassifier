@@ -1,5 +1,5 @@
 function [accuracyAv,ErrorRateAv,RecallAv,PrecisionAv,SpecificityAv,F1Av,FalseAlarmRateAv] = averageMetrics(algorithm, label)
-%UNTITLED5 Summary of this function goes here
+%averageMetrics Summary of this function goes here
 %   Detailed explanation goes here
 % algorithm1 = SVM Using Nutrition
 % algorithm2 = SVM Using Nutrition and MI

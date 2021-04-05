@@ -11,7 +11,6 @@ totalPosPre = sum(T.(label) == 1);
 totalNegPre = sum(T.(label) == 0);
 
 frequencyTable = frequencyTable(label);
-% frequencyTable = frequencyTable.rankingTable;
 
 % feature, MIScore
 Feature = frequencyTable.words;
