@@ -1,4 +1,4 @@
-function [accuracy,ErrorRate,Recall,Precision,Specificity,F1,FalseAlarmRate] = KNNUsingNutritionAndMI(label)
+function [accuracy,ErrorRate,Recall,Precision,Specificity,F1,FalseAlarmRate,X,Y] = KNNUsingNutritionAndMI(label,K)
 %KNNUsingNutritionAndMI 
 %   KNN classifier with nutritional information and Mutual Information 
 %       ranked keywords as features
@@ -39,7 +39,7 @@ featureVector = createKeywordsVector(keywordsTrain, words);
 % r = A(:,3)
 trainingFeatures = table(trainingSet.kcal, trainingSet.fat, trainingSet.carbs, trainingSet.protein, featureVector(:,1), featureVector(:,2), featureVector(:,3), featureVector(:,4), featureVector(:,5), featureVector(:,6), featureVector(:,7), featureVector(:,8), featureVector(:,9), featureVector(:,10));
 
-KNNHealthyModel = fitcknn(trainingFeatures,trainingLabels);
+KNNHealthyModel = fitcknn(trainingFeatures,trainingLabels,'NumNeighbors',K);
 save KNNHealthyModel;
 
 %% Test
@@ -61,8 +61,9 @@ accuracy = sum(predictions == testingLabels)/numel(testingLabels);
 
 % Display metrics
 NutritionAndMITable = table(accuracy,ErrorRate,Recall,Precision,Specificity,F1,FalseAlarmRate, 'VariableNames',{'Accuracy','ErrorRate','Recall','Precision','Specificity','F1','FalseAlarmRate'});
-% confusionMatrix(testLabels,classificationResult);
 
+% Used to calculate ROC curve
+[X,Y] = perfcurve(testingLabels,predictions,'1');
 
 end
 

@@ -14,7 +14,7 @@ for i=1:5
     elseif algorithm == 2
         [accuracy,ErrorRate,Recall,Precision,Specificity,F1,FalseAlarmRate] = SVMUsingNutritionAndMI(label);
     elseif algorithm == 3
-        [accuracy,ErrorRate,Recall,Precision,Specificity,F1,FalseAlarmRate] = KNNUsingNutrition(label);
+        [accuracy,ErrorRate,Recall,Precision,Specificity,F1,FalseAlarmRate] = KNNUsingNutrition(label, K);
     else
         [accuracy,ErrorRate,Recall,Precision,Specificity,F1,FalseAlarmRate] = KNNUsingNutritionAndMI(label);
     end
